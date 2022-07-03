@@ -4,15 +4,12 @@ function App() {
 
 	const [calc, setCalc] = useState('');
 	const [selected, setSelected] = useState(0);
+	const [startAgain, setStartAgain] = useState(false);
 
 	const operators = ['/', '*', '-', '+', '=', '.'];
 
 	const caluclate = () => {
-		if (calc === '') {
-			setSelected('0');
-		} else {
-			setSelected(eval(calc));
-		}
+		setSelected(() => eval(calc));
 	};
 
 	const resetCalc = () => {
@@ -20,27 +17,39 @@ function App() {
 		setSelected(0);
 	}
 
+	const handleInput = (value) => {
+		if (calc === '' && value !== '-' && value !== '.' && operators.includes(value)) {
+			setCalc(() => '0' + (value).toString());
+		} else if (operators.includes(calc[calc.length - 1]) && operators.includes(value)) {
+			setCalc(() => calc.slice(0, -1) + (value).toString());
+		} else {
+			setCalc(() => calc + (value).toString());
+		}
+		setSelected(value);
+	}
+
 	const handleClick = (e) => {
 		if (e.target.tagName === 'BUTTON') {
 			const value = e.target.value;
+
+			if (startAgain) {
+				if (value === '=') { return; }
+				setCalc(() => selected + value.toString());
+				setStartAgain(false);
+				return;
+			}
 
 			if (value === 'AC') {
 				return resetCalc();
 			}
 
 			if (value === '=') {
+				setCalc(() => calc + (value).toString());
+				setStartAgain(true);
 				return caluclate();
 			}
 
-			if (calc === '' && value !== '-' && value !== '.' && operators.includes(value)) {
-				setCalc(() => '0' + (value).toString());
-			} else if (operators.includes(calc[calc.length - 1]) && operators.includes(value)) {
-				setCalc(() => calc.slice(0, -1) + (value).toString());
-			} else {
-				setCalc(() => calc + (value).toString());
-			}
-			setSelected(value);
-
+			handleInput(value);
 		}
 	}
 
