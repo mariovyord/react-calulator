@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
 
 :root {
-	--main-bg-color: #1B1B1B;
-	--warning: #AC3939;
-	--calc-blue: #004466;
-	--light-gray: #666666;
-	--dark-gray: #4D4D4D;
+	--main-bg-color: #000000;
+	--warning: #ce0000;
+	--calc-green: #06FF01;
+	--pink: #F681F6;
+	--blue: #03E9F4;
 }
 
 html {
@@ -40,12 +40,19 @@ button {
 .App {
 	display: flex;
 	justify-content: center;
-	padding-top: 3rem;
+	padding-top: 2rem;
 }
 
 .calculator {
 	background-color: var(--main-bg-color);
 	padding: 5px;
+}
+
+.display {
+	padding: 1rem 1rem;
+	margin-bottom: 5px;
+	border: 2px solid var(--pink);
+	border-style: inset;
 }
 
 .display span {
@@ -71,19 +78,67 @@ button {
 	font-family: 'Oswald', sans-serif;
 	appearance: none;
 	color: white;
-	background-color: var(--dark-gray);
+	background-color: var(--blue);
 	border: 1px solid black;
 	font-size: 1rem;
 	padding: 0.5rem 1rem;
+	transition: 0.2s;
 }
 
 button:hover {
-	opacity: 0.9;
 	cursor: pointer;
+	animation: shake 0.5s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+	0% {
+		transform: translate(1px, 1px) rotate(0deg);
+	}
+
+	10% {
+		transform: translate(-1px, -2px) rotate(-1deg);
+	}
+
+	20% {
+		transform: translate(-3px, 0px) rotate(1deg);
+	}
+
+	30% {
+		transform: translate(3px, 2px) rotate(0deg);
+	}
+
+	40% {
+		transform: translate(1px, -1px) rotate(1deg);
+	}
+
+	50% {
+		transform: translate(-1px, 2px) rotate(-1deg);
+	}
+
+	60% {
+		transform: translate(-3px, 1px) rotate(0deg);
+	}
+
+	70% {
+		transform: translate(3px, 1px) rotate(-1deg);
+	}
+
+	80% {
+		transform: translate(-1px, -1px) rotate(1deg);
+	}
+
+	90% {
+		transform: translate(1px, 2px) rotate(0deg);
+	}
+
+	100% {
+		transform: translate(1px, -2px) rotate(-1deg);
+	}
 }
 
 .ligth-gray {
-	background-color: var(--light-gray);
+	background-color: var(--pink);
 }
 
 #clear {
@@ -93,7 +148,7 @@ button:hover {
 }
 
 #equals {
-	background-color: var(--calc-blue);
+	background-color: var(--calc-green);
 }
 
 #zero {

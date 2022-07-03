@@ -47,6 +47,7 @@ function App() {
 	return (
 		<div className="App">
 			<div className="container">
+				<h1>Neon Calculator</h1>
 				<main className='calculator'>
 					<div className="display">
 						<span className="calcs">{calc || 0}</span>
