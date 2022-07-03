@@ -9,7 +9,12 @@ function App() {
 	const operators = ['/', '*', '-', '+', '=', '.'];
 
 	const caluclate = () => {
-		setSelected(() => eval(calc));
+		// TODO Fix bug where numbers with leading zero crashes the calculator
+		let result = calc;
+		if (operators.includes(result[result.length - 1])) {
+			result = calc.slice(0, -1);
+		}
+		setSelected(() => eval(result));
 	};
 
 	const resetCalc = () => {
@@ -32,15 +37,15 @@ function App() {
 		if (e.target.tagName === 'BUTTON') {
 			const value = e.target.value;
 
+			if (value === 'AC') {
+				return resetCalc();
+			}
+
 			if (startAgain) {
 				if (value === '=') { return; }
 				setCalc(() => selected + value.toString());
 				setStartAgain(false);
 				return;
-			}
-
-			if (value === 'AC') {
-				return resetCalc();
 			}
 
 			if (value === '=') {
