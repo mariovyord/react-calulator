@@ -1,13 +1,59 @@
+import { useState } from "react";
+
 function App() {
+
+	const [calc, setCalc] = useState('');
+	const [selected, setSelected] = useState(0);
+	const [isDisabled, setIsDisabled] = useState(false);
+
+	const operators = ['/', '*', '-', '+', '=', '.'];
+
+	const caluclate = () => setSelected(eval(calc));
+
+	const resetCalc = () => {
+		setCalc('');
+		setSelected(0);
+		setIsDisabled(false);
+	}
+
+	const handleClick = (e) => {
+		if (e.target.tagName === 'BUTTON') {
+			const value = e.target.value;
+
+			if (value === 'AC') {
+				return resetCalc();
+			}
+
+			if (isDisabled) {
+				return resetCalc();
+			}
+
+			if (value === '=') {
+				const result = caluclate();
+				setCalc(() => calc + (value).toString());
+				setIsDisabled(true);
+				return result;
+			}
+
+			if (operators.includes(calc[calc.length - 1]) && operators.includes(value)) {
+				setCalc(() => calc.slice(0, -1) + (value).toString());
+			} else {
+				setCalc(() => calc + (value).toString());
+			}
+			setSelected(value);
+
+		}
+	}
+
 	return (
 		<div className="App">
 			<div className="container">
-				<div className='calculator'>
+				<main className='calculator'>
 					<div className="display">
-						<span className="calcs">Caluclations...</span>
-						<span className="result">Result</span>
+						<span className="calcs">{calc || 0}</span>
+						<span className="result">{selected}</span>
 					</div>
-					<div className="buttons">
+					<div onClick={handleClick} className="buttons">
 						<button id="clear" value="AC">AC</button>
 						<button className="ligth-gray" id="divide" value="/">/</button>
 						<button className="ligth-gray" id="multiply" value="*">x</button>
@@ -26,7 +72,10 @@ function App() {
 						<button id="decimal" value=".">.</button>
 						<button id="equals" value="=">=</button>
 					</div>
-				</div>
+				</main>
+				<footer >
+					By <a href="https://github.com/mariovyord/react-calulator">Mario Yordanov</a>
+				</footer>
 			</div>
 		</div>
 	);
