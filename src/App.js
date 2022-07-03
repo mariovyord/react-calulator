@@ -4,16 +4,20 @@ function App() {
 
 	const [calc, setCalc] = useState('');
 	const [selected, setSelected] = useState(0);
-	const [isDisabled, setIsDisabled] = useState(false);
 
 	const operators = ['/', '*', '-', '+', '=', '.'];
 
-	const caluclate = () => setSelected(eval(calc));
+	const caluclate = () => {
+		if (calc === '') {
+			setSelected('0');
+		} else {
+			setSelected(eval(calc));
+		}
+	};
 
 	const resetCalc = () => {
 		setCalc('');
 		setSelected(0);
-		setIsDisabled(false);
 	}
 
 	const handleClick = (e) => {
@@ -24,18 +28,13 @@ function App() {
 				return resetCalc();
 			}
 
-			if (isDisabled) {
-				return resetCalc();
-			}
-
 			if (value === '=') {
-				const result = caluclate();
-				setCalc(() => calc + (value).toString());
-				setIsDisabled(true);
-				return result;
+				return caluclate();
 			}
 
-			if (operators.includes(calc[calc.length - 1]) && operators.includes(value)) {
+			if (calc === '' && value !== '-' && value !== '.' && operators.includes(value)) {
+				setCalc(() => '0' + (value).toString());
+			} else if (operators.includes(calc[calc.length - 1]) && operators.includes(value)) {
 				setCalc(() => calc.slice(0, -1) + (value).toString());
 			} else {
 				setCalc(() => calc + (value).toString());
@@ -51,7 +50,7 @@ function App() {
 				<main className='calculator'>
 					<div className="display">
 						<span className="calcs">{calc || 0}</span>
-						<span className="result">{selected}</span>
+						<span className="result">{selected || 0}</span>
 					</div>
 					<div onClick={handleClick} className="buttons">
 						<button id="clear" value="AC">AC</button>

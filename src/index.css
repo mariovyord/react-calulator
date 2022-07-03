@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+
 :root {
 	--main-bg-color: #1B1B1B;
 	--warning: #AC3939;
@@ -9,7 +11,7 @@
 html {
 	box-sizing: border-box;
 	font-size: 25px;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Oswald', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -66,6 +68,7 @@ button {
 }
 
 button {
+	font-family: 'Oswald', sans-serif;
 	appearance: none;
 	color: white;
 	background-color: var(--dark-gray);
