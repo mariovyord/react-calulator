@@ -66,14 +66,30 @@ button {
 
 button {
 	appearance: none;
+	color: white;
+	background-color: var(--dark-gray);
 	border: 1px solid black;
 	font-size: 1rem;
 	padding: 0.5rem 1rem;
 }
 
+button:hover {
+	opacity: 0.9;
+	cursor: pointer;
+}
+
+.ligth-gray {
+	background-color: var(--light-gray);
+}
+
 #clear {
+	background-color: var(--warning);
 	grid-column-start: 1;
 	grid-column-end: 3;
+}
+
+#equals {
+	background-color: var(--calc-blue);
 }
 
 #zero {
