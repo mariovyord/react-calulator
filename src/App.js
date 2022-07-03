@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className="App">
+			<div className="container">
+				<div className='calculator'>
+					<div className="display">
+						<span className="calcs">Caluclations...</span>
+						<span className="result">Result</span>
+					</div>
+					<div className="buttons">
+						<button id="clear" value="AC">AC</button>
+						<button id="divide" value="/">/</button>
+						<button id="multiply" value="*">x</button>
+						<button id="seven" value="7">7</button>
+						<button id="eight" value="8">8</button>
+						<button id="nine" value="9">9</button>
+						<button id="subtract" value="-">-</button>
+						<button id="four" value="4">4</button>
+						<button id="five" value="5">5</button>
+						<button id="six" value="6">6</button>
+						<button id="add" value="+">+</button>
+						<button id="one" value="1">1</button>
+						<button id="two" value="2">2</button>
+						<button id="three" value="3">3</button>
+						<button id="zero" value="0">0</button>
+						<button id="decimal" value=".">.</button>
+						<button id="equals" value="=">=</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default App;
