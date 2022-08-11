@@ -10,6 +10,7 @@ function App() {
 
 	const caluclate = () => {
 		// TODO Fix bug where numbers with leading zero crashes the calculator
+		// eval doesnt read it as integer
 		let result = calc;
 		if (operators.includes(result[result.length - 1])) {
 			result = calc.slice(0, -1);
